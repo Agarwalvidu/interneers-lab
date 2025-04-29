@@ -17,6 +17,8 @@ from mongoengine import connect
 BASE_DIR = Path(__file__).resolve().parent.parent
 CORS_ALLOW_ALL_ORIGINS = True
 
+CORS_ALLOW_ALL_ORIGINS = True
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -42,10 +44,12 @@ INSTALLED_APPS = [
     'rest_framework',
     'products',
     'corsheaders',
+    'corsheaders',
     'products_classic',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
