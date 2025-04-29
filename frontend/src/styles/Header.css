@@ -1,0 +1,38 @@
+/* header.css */
+
+header {
+    background-color: #282c34;
+    padding: 10px 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  header .title {
+    margin: 0;
+  }
+  
+  header .nav {
+    display: flex;
+    gap: 15px;
+  }
+  
+  header .nav a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  @media (max-width:540px) {
+    header .title {
+        font-size: 1rem;
+      }
+  }
+  @media (max-width:370px) {
+    header .title {
+        font-size: 0.9rem;
+      }
+      header .nav a {
+        font-size: 0.7rem;
+      }
+  }
