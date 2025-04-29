@@ -1,0 +1,71 @@
+:root {
+  --color-background: #f8f8f8;
+  --color-price: #2e8b57;
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  --color-error: #c62828;
+  --color-info: #2e7d32;
+  --font-family: Arial, sans-serif;
+  --product-tile-width: 200px;
+  --transition-speed: 0.3s;
+}
+
+body {
+  font-family: var(--font-family);
+  padding: 20px;
+  background-color: var(--color-background);
+}
+
+#product-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.product-tile {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px var(--color-shadow);
+  padding: 15px;
+  width: var(--product-tile-width);
+  transition: transform var(--transition-speed) ease;
+  animation: fadeInUp 1.5s ease forwards;
+}
+
+.product-tile:hover {
+  transform: scale(1.05);
+}
+
+.product-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.product-price {
+  color: var(--color-price);
+  font-weight: bold;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.error-message {
+  color: var(--color-error);
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.info-message {
+  color: var(--color-info);
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+}
