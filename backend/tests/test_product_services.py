@@ -3,9 +3,35 @@ from unittest.mock import patch, MagicMock
 from products_mongo.product_service import ProductService
 from bson import ObjectId
 from datetime import datetime
+from tests.mock_products import (
+    valid_product,
+    negative_price_product,
+    duplicate_name_product,
+    invalid_category_product,
+    date_range_start,
+    date_range_end
+)
 
 
 class TestProductService(unittest.TestCase):
+
+    def test_create_product_with_negative_price(self):
+        """Test creating a product with a negative price (invalid)."""
+        with self.assertRaises(ValueError):
+            ProductService.create_product(negative_price_product)
+
+
+    def test_create_product_with_invalid_category(self):
+        """Test creating a product with an invalid category reference."""
+        with self.assertRaises(Exception):
+            ProductService.create_product(invalid_category_product)
+
+
+    @patch('products_mongo.product_repository.ProductRepository.get_by_date_range')
+    def test_get_product_invalid_date_range(self, mock_get_by_date_range):
+        """Test invalid date range where end_date < start_date."""
+        with self.assertRaises(ValueError):
+            ProductService.get_product_by_date_range(date_range_start, date_range_end)
 
     @patch('products_mongo.product_repository.ProductRepository.create')
     def test_create_product(self, mock_create):
@@ -138,5 +164,7 @@ class TestProductService(unittest.TestCase):
         self.assertTrue(result)
         mock_remove_product_from_category.assert_called_once_with(mock_product_id, mock_category_id)
 
+
+    
 if __name__ == '__main__':
     unittest.main()
